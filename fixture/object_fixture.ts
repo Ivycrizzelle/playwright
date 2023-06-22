@@ -9,6 +9,7 @@ import TestFooters from "../page-objects/web-footers.page";
 import TestMainpage from "../page-objects/web-mainpage-page";
 import TestMainpage2 from "../page-objects/web-mainpage2-page";
 import TestFooters2 from "../page-objects/web-footers2-page";
+import TestSafer from "../page-objects/web-safer-page";
 type Pages = {
   testlogin: Testlogin;
 
@@ -20,6 +21,7 @@ type Pages = {
   testMainpage2: TestMainpage2;
   testMainpage: TestMainpage;
   testFooters2: TestFooters2;
+  testSafer: TestSafer;
 };
 const testObjects = objectFixture.extend<Pages>({
   testlogin: async ({ page }, use) => {
@@ -53,6 +55,9 @@ const testObjects = objectFixture.extend<Pages>({
   },
   testFooters2: async ({ page }, use) => {
     await use(new TestFooters2(page));
+  },
+  testSafer: async ({ page }, use) => {
+    await use(new TestSafer(page));
   },
 });
 export const test = testObjects;

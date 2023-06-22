@@ -10,7 +10,7 @@ export default class TestFooters {
   Gamcareicon: Locator;
   Safeandsecureicon: Locator;
   Over18icon: Locator;
-
+  Gamblingcommisionicon: Locator;
   constructor(page: Page) {
     this.page = page;
     {
@@ -30,12 +30,16 @@ export default class TestFooters {
         name: "Safe and Secure",
       })),
       (this.Over18icon = this.page.getByRole("img", { name: "Over 18" })),
-      {};
+      (this.Gamblingcommisionicon = this.page.getByRole("link", {
+        name: "gambling-commission",
+      }));
+    {
+    }
   }
 
   async gotoUrl() {
     await this.page.goto("https://web-staging.aonewallet.com");
-    await this.page.getByRole("button", { name: "Accept cookies" }).isVisible();
-    await this.page.getByRole("button", { name: "Accept cookies" }).click();
+    // await this.page.getByRole("button", { name: "Accept cookies" }).isVisible();
+    // await this.page.getByRole("button", { name: "Accept cookies" }).click();
   }
 }

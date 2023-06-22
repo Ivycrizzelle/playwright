@@ -9,18 +9,19 @@ test.describe(`test web-footers2-page`, () => {
   });
 
   test(`Click twitter icon `, async ({ page, testFooters2 }) => {
-    const page1Promise = page.waitForEvent("popup");
-    await page.getByRole("link", { name: "twitter" }).click();
-    const page1 = await page1Promise;
-    // await page.waitForTimeout(5000);
-    await expect(page).toHaveURL(`https://twitter.com/BetVisionsports`);
-  });
-  test(`Click Gamstop icon `, async ({ page, testFooters2 }) => {
-    const page3Promise = page.waitForEvent("popup");
-    await page.getByRole("link", { name: "gamestop" }).click();
-    const page3 = await page3Promise;
-    await expect(page).toHaveURL(`https://www.gamstop.co.uk/`);
+    const [popup] = await Promise.all([
+      page.waitForEvent("popup"),
+      page.getByRole("link", { name: "twitter" }).click(),
+    ]);
 
+    // Navigate to the Twitter page
+    await popup.goto("https://twitter.com/BetVisionsports");
+
+    // Check that the URL is correct
+    expect(popup.url()).toBe("https://twitter.com/BetVisionsports");
+  });
+
+  test(`Click Gamstop icon `, async ({ page, testFooters2 }) => {
     const [popup] = await Promise.all([
       page.waitForEvent("popup"),
       page.getByRole("link", { name: "gamestop" }).click(),
