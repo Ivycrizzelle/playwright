@@ -41,7 +41,7 @@ test.describe(`test web-footers2-page`, () => {
     await popup.goto("https://www.ibas-uk.com");
 
     // Check that the URL is correct
-    expect(popup.url()).toBe("https://www.ibas-uk.com/");
+    expect(popup.url()).toBe("https://ibas-uk.com/");
   });
   test(`Click Gambling commision icon`, async ({ page, testFooters2 }) => {
     const [popup] = await Promise.all([
@@ -86,5 +86,12 @@ test.describe(`test web-footers2-page`, () => {
         `https://web-staging.aonewallet.com/responsible-gambling`
       );
     await expect(page.getByRole("img", { name: "Safer Gaming" })).toBeVisible();
+  });
+
+  test(`Click email icon`, async ({ page, testFooters2 }) => {
+    await page.getByRole("img", { name: "Email" }).click();
+    await expect(page).toHaveURL(
+      `https://web-staging.aonewallet.com/contact-us`
+    );
   });
 });

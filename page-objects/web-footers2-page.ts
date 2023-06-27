@@ -11,11 +11,12 @@ export default class TestFooters {
   Safeandsecureicon: Locator;
   Over18icon: Locator;
   Gamblingcommisionicon: Locator;
+  EmailIcon: Locator;
   constructor(page: Page) {
     this.page = page;
     {
     }
-
+    this.EmailIcon = this.page.getByRole("img", { name: "Email" });
     (this.twittericon = this.page.getByRole("link", { name: "twitter" })),
       (this.Gamstopicon = this.page.getByRole("link", { name: "gamecare" })),
       (this.Ibasicon = this.page.getByText(
